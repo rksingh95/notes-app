@@ -26,7 +26,7 @@ jobs:
               black --check DjangoNotesApp
         - name: Test Stage
           run: |
-            pytest
+            python manage.py test
         - name: Build Stage
           run: |
             make docker_compose
