@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Note{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h3>Edit your note</h3>
+    <form action="/update/note/{{note.id}}" method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="notestitle" class="form-label">Note Title</label>
+            <input type="text" class="form-control" id="notestitle" name="notestitle" placeholder="Enter your note's title here" value="{{note.title}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="notestag" class="form-label">Note Tag</label>
+            <textarea class="form-control" id="notestag" name="notestag" rows="3" placeholder="Enter your note's Tag" required>{{note.tag}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="notesbody" class="form-label">Note Body</label>
+            <textarea class="form-control" id="notesbody" name="notesbody" rows="4" placeholder="Enter your note's body" required>{{note.body}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Update note</button>
+    </form>
+</div>
+{% endblock body %}

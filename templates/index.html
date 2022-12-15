@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Add a Note</h3>
+            <form action="/addnote" method="post" onkeyup="preview(this)">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="notestitle" class="form-label">Note Title</label>
+                    <input type="text" class="form-control" id="notestitle" name="notestitle" placeholder="Enter your note's title here" required>
+                </div>
+                <div class="mb-3">
+                    <label for="notestag" class="form-label">Note Tag</label>
+                    <input type="text" class="form-control" id="notestag" name="notestag" placeholder="Enter your note's tag here" required>
+                </div>
+                <div class="mb-3">
+                    <label for="notesbody" class="form-label">Note Body</label>
+                    <textarea class="form-control" id="notesbody" name="notesbody" rows="4" placeholder="Enter your note's body" required></textarea>
+                </div>
+                {% if user.is_authenticated %}
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add note</button>
+                {% else %}
+                <button type="submit" class="btn btn-primary" disabled><i class="fa fa-plus"></i> Add note</button>
+                {% endif %}
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h3>Your Note Preview</h3>
+            <div id="note-preview"></div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <hr>
+    <h3>Your Notes</h3>
+    {% if notes %}
+        <div class="row">
+        {% for note in notes %}
+            <div class="card mx-2 my-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{note.title}}</h5>
+                    <p class="card-text">
+                    {{note.description}} <br>
+                    Created : {{note.created}} <br>
+                    Updated : {{note.updated}}
+                    </p>
+                    <a href="/edit/note/{{note.id}}"><button class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</button></a><button class="btn btn-primary ms-2" onclick="if(confirm('Are you sure you want to delete this note ?')){window.location = '/delete/note/{{note.id}}'}else{return false}"><i class="fa fa-trash"></i> Delete</button>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        {% else %}
+        <h5>You have no notes to display. Please add a note.</h5>
+    {% endif %}
+    {% else %}
+    {% endif %}
+</div>
+
+<script>
+    function preview(e) {
+        let title = document.getElementById('notestitle').value;
+        let tag = document.getElementById('notestag').value;
+        let body = document.getElementById('notesbody').value;
+        let preview = document.getElementById('note-preview');
+        
+        preview.innerHTML = `
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <h7 class="card-title">${tag}</h7>
+                <p class="card-text">${body}</p>
+
+                <button class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary ms-2" disabled><i class="fa fa-trash"></i> Delete</button>
+            </div>
+        </div>`;
+    }
+</script>
+{% endblock body %}
