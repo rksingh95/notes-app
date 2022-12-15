@@ -22,8 +22,8 @@ jobs:
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         - name: Lint Stage
           run: |
-              black app
-              black --check app
+              black DjangoNotesApp
+              black --check DjangoNotesApp
         - name: Test Stage
           run: |
             pytest
