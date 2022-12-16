@@ -1,5 +1,11 @@
 ### Django Notes Application
 
+#### Simply download the image from docker-hub and run it on your machine
+
+- ![Django Notes Containerized Application](https://hub.docker.com/repository/docker/rsingh95/notes-app)
+- Simply lging to your docker desktop and pull the image using `docker pull rsingh95/notes-app:notes-app`
+- Run the image using `docker run -d -p 8000:8000 notes-app`
+- Enjoy taking notes on the application
 
 ### Run the application using make file
 - Clone the project on your machine
@@ -7,7 +13,7 @@
 - Run `make start_container` on your machine
 - The app to edit notes will start to run on http://0.0.0.0:8000 (If not found simply change the host to http://localhost:8000)
 - Create user using the signup button (Provide username and password)
--  ![Use the signup form](https://github.com/rksingh95/notes-app/blob/master/DjangoNotesApp/app_images/Screenshot%202022-12-15%20at%2022.00.49.png)
+- ![Use the signup form](https://github.com/rksingh95/notes-app/blob/master/DjangoNotesApp/app_images/Screenshot%202022-12-15%20at%2022.00.49.png)
 - Basic user, password email validations are in place so if any errors you will be given correct message
 - ![Use Login form](https://github.com/rksingh95/notes-app/blob/master/DjangoNotesApp/app_images/Screenshot%202022-12-15%20at%2022.03.31.png)
 - Provide the user credentials to login without logging in you cant make any notes

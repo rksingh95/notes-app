@@ -1,7 +1,7 @@
 build_project:
 	docker build -t notes-app .
 	docker tag notes-app rsingh95/notes-app:notes-app
-	docker-compose run -it notes-app
+	docker run -d -p 8000:8000 notes-app
 
 start_container:
 	docker-compose up
