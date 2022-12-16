@@ -1,8 +1,8 @@
 ### Django Notes Application
 
-#### Simply download the image from docker-hub and run it on your machine
+#### Simply download the image from docker-hub and run it on your machine to use the APP
 
-- ![Django Notes Containerized Application](https://hub.docker.com/repository/docker/rsingh95/notes-app)
+- [Django Notes Containerized Application on docker-hub](https://hub.docker.com/repository/docker/rsingh95/notes-app)
 - Simply lging to your docker desktop and pull the image using `docker pull rsingh95/notes-app:notes-app`
 - Run the image using `docker run -d -p 8000:8000 notes-app`
 - Enjoy taking notes on the application
